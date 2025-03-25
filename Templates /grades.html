@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grades</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        .grade-form, .grades-list {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input, select { padding: 8px; margin: 5px; }
+        button { 
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    </style>
+</head>
+<body>
+    <h1>Grades for {{ student['name'] }}</h1>
+    
+    <div class="grade-form">
+        <h2>Add Grade</h2>
+        <form method="post">
+            <input type="text" name="subject" placeholder="Subject" required>
+            <input type="number" name="grade" placeholder="Grade" min="0" max="100" step="0.1" required>
+            <button type="submit">Add Grade</button>
+        </form>
+    </div>
+
+    <div class="grades-list">
+        <h2>Grade History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Grade</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for grade in grades %}
+                <tr>
+                    <td>{{ grade['subject'] }}</td>
+                    <td>{{ grade['grade'] }}%</td>
+                    <td>{{ grade['date'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="/" style="display: inline-block; margin-top: 20px; color: #4299e1; text-decoration: none;">← Back to Students</a>
+</body>
+</html>
